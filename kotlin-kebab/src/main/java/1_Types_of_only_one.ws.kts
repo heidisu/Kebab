@@ -1,23 +1,24 @@
-object Salt
+sealed class Seasoning {
+    object Salt : Seasoning()
+}
 
 
 // makings stuff with the type
-val a = Salt
-val c:Salt = Salt
-val salts = listOf(a, c, Salt)
-val moarsalts : List<Salt> = listOf(a,c)
+val a = Seasoning.Salt
+val c: Seasoning.Salt = Seasoning.Salt
+val salts = listOf(a, c, Seasoning.Salt)
+val moarsalts: List<Seasoning.Salt> = listOf(a, c)
 
 salts
 
 
 // A function from salt is roughly as interesting as the type
-fun salty(s: Salt): Boolean =
+fun salty(s: Seasoning): Boolean =
     when (s) {
-        is Salt -> true
-        else -> true
+        is Seasoning.Salt -> true
     }
 
-salty(Salt)
+salty(Seasoning.Salt)
 
 // What is the function salty a function from and to? Can you make it a function to an int or a string?
 

@@ -30,34 +30,34 @@ false
 true && false
 
 // and some values are functions
-{x:Int -> x + x}
+{ x: Int -> x + x }
 
 // variables can hold functions
-val foo = {x:Int -> x + x}
+val foo = { x: Int -> x + x }
 
 // and functions can be applied to arguments
 foo(4);
-{x:Int -> x + x}(4)
+{ x: Int -> x + x }(4)
 
 // there's a shorthand syntax for defining functions with let
 // it goes something kind of like
 // let <name> <arg> ... = <expression>
 // (foo and foo2 are "the same" function)
 
-val foo2 = {x: Int ->  x + x}
+val foo2 = { x: Int -> x + x }
 foo2.invoke(4)
 
 // multiple arguments via function that returns function
 // (bar, bar2 and bar3 are "the same" function)
 
-val bar = {x: Int -> {y: Int -> x + y * 2}}
-val bar2 = {x: Int,  y: Int -> x + y * 2 }
-fun bar3(x: Int,  y: Int) = x + y * 2
+val bar = { x: Int -> { y: Int -> x + y * 2 } }
+val bar2 = { x: Int, y: Int -> x + y * 2 }
+fun bar3(x: Int, y: Int) = x + y * 2
 
 println(bar(5)(6))
 
-fun quux(x: Int) : Int{
-    val y = x +x
+fun quux(x: Int): Int {
+    val y = x + x
     val z = y * y
     return y + z
 }
@@ -93,7 +93,7 @@ val anOtterShape = Shape.Circle(4.7)
 
 // pattern matching on discriminated unions lets us case analysis
 fun area(shape: Shape): Double =
-    when(shape) {
+    when (shape) {
         is Shape.Square -> shape.x * shape.x
         is Shape.Rectangle -> shape.x * shape.y
         is Shape.Circle -> Math.PI * Math.PI * shape.r
@@ -103,8 +103,6 @@ fun area(shape: Shape): Double =
 area(aShape)
 area(anotherShape)
 area(anOtterShape)
-
-
 
 
 // *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -121,14 +119,14 @@ listOf(1, 2)
 val baz = listOf(3, 1, 5, 0)
 
 // standard lib comes with useful things to do to lists
-baz.map{x -> x + x}
+baz.map { x -> x + x }
 
-listOf(aShape, anotherShape, anOtterShape).map{ area(it) }
+listOf(aShape, anotherShape, anOtterShape).map { area(it) }
 
 baz.filter { x -> x > 2 }
 
-listOf(1, 2, 3, 4, 5).fold (0,){res, x -> res + x}
-listOf(aShape, anotherShape, anOtterShape).fold(0.0){res, x -> res + area(x) }
+listOf(1, 2, 3, 4, 5).fold(0) { res, x -> res + x }
+listOf(aShape, anotherShape, anOtterShape).fold(0.0) { res, x -> res + area(x) }
 // and stuff...
 
 // also there are other other things. sets, maps, arrays, ...
