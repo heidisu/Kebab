@@ -24,8 +24,8 @@ fun flip(tree: Tree): Tree =
 fun hasPear(tree: Tree) : Boolean =
     when(tree){
         is Bud -> false
-        is LeftFruit -> tree.fruit == Pear
-        is RightFruit -> tree.fruit == Pear
+        is LeftFruit -> tree.fruit == Pear || hasPear(tree.tree)
+        is RightFruit -> tree.fruit == Pear || hasPear(tree.tree)
         is Split -> hasPear(tree.left) || hasPear(tree.right)
     }
 
